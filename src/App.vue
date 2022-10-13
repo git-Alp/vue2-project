@@ -1,12 +1,29 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link v-for="item in nav" :key="item.name" :to="item.path"> {{item.name}} </router-link>
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      nav: this.$router.options.routes
+    }
+  },
+  created () {
+    this.init();
+  },
+  methods: {
+    init: function () {
+     console.log("this.$router.options.routes", this.$router.options.routes); 
+    }
+  }
+}
+</script>
 
 <style>
 #app {
